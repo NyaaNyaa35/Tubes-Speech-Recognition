@@ -1,28 +1,32 @@
-from importlib.resources import path
+from flask import Flask, render_template, request
 import speech_recognition as sr
-import webbrowser as web
+import os
 
+app = Flask(__name__)
+@app.route("/")
+def index(): 
+    return render_template("index.html")
 
-def main():
-
-    pathChrome = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
-
+@app.route('/process', methods=['GET', 'POST'])
+def process():
     r = sr.Recognizer()
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)
+    audio = False
+    response = ""
+    if request.method == 'POST':
+        save_path = os.path.join("", "audio.wav")
+        request.files['audio_data'].save(save_path)
+    
+        with sr.AudioFile('audio.wav') as source:
+            audio = r.record(source)
+            try:
+                response = r.recognize_google(audio)
+                print("Text: "+response)
+            except Exception as e:
+                print("Exception: "+str(e))
+                
+    return response
 
-        print("Say Something")
-
-        audio = r.listen(source)
-
-        print("Recognizing Now")
-
-        try:
-            dest = r.recognize_google(audio)
-            print("U Said ===> "+dest)
-            web.get(pathChrome).open(dest)
-        except Exception as e:
-            print("Error : " + str(e))
+    
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
