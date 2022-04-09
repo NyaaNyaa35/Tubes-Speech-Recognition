@@ -5,7 +5,7 @@ import webbrowser as web
 
 def main():
 
-    pathChrome = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+    pathChrome = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
 
     r = sr.Recognizer()
     with sr.Microphone() as source:
