@@ -7,6 +7,11 @@
 1119036 - Hans Patrick Eko Prasetyo\
 1119045 - Rafael Christo Garcia
 
+## Project Run Command : 
+```
+python main.py
+```
+
 ## Library Used :
 
 ## Speech Recognition
