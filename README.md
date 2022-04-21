@@ -36,6 +36,11 @@ pip install pyaudio
 pip install PyAudio-0.2.11-cp310-cp310-win_amd64.whl
 ```
 
+### Wavio
+```
+pip install wavio
+```
+
 ## Programming Language
 
 [Python](https://www.python.org/)
