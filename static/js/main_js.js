@@ -99,7 +99,14 @@ function createDownloadLink(blob) {
 	   	    processData: false,
             contentType: false,
 	   	    success: function(data){
-                $('#hasil').html('U said = ' + data);
+				try {
+                	$('#hasil').html('U said = ' + data);
+					// $('#feature_extraction').attr('src','image_feature.png');
+					// document.getElementById("feature_extraction").src = "image_feature.jpg"
+				} catch(err) {
+					console.log("Error : " + err);
+				}
+				
 	   	    }
 	    });
 	})
